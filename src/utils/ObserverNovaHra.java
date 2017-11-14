@@ -5,16 +5,10 @@
  */
 package utils;
 
-import logika.IHra;
-
 /**
  *
  * @author Rita
  */
-public interface Observer {
-    
-   void update(); 
-   
-   void novaHra(IHra hra);//vytvoreni metody nova hra
+public interface ObserverNovaHra {
     
 }

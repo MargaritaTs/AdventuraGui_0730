@@ -28,17 +28,21 @@ public class Main extends Application {
     
     private Mapa mapa;
     private MenuPole menu;
+    private IHra hra;
+    private TextArea centerText;//centerText je globalni promenna
+    private Stage primaryStage;
     
     @Override
     public void start(Stage primaryStage) {
         
-        IHra hra = new Hra();
+        this.primaryStage = primaryStage;
+        hra = new Hra();
         mapa = new Mapa(hra);
-        menu = new MenuPole();
+        menu = new MenuPole(this);//odkaz na sebe
         
         BorderPane borderPane = new BorderPane();
                 
-        TextArea centerText = new TextArea();
+        centerText = new TextArea();
         centerText.setText(hra.vratUvitani());
         centerText.setEditable(false);
         borderPane.setCenter(centerText);
@@ -108,6 +112,20 @@ public class Main extends Application {
                 }
         }
         
+    }
+
+    public void novaHra() {
+        hra = new Hra();
+        centerText.setText(hra.vratUvitani());//v tom textArea se vrati nove uvitani ale tecka na mape se neosune na zacatek
+        //to same pro vsechny observery
+        mapa.novaHra(hra);
+    }
+
+    /**
+     * @return the primaryStage
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
     
 }

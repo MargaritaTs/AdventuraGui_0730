@@ -18,7 +18,7 @@ import utils.Observer;
  *
  * @author Rita
  */
-public class Mapa extends AnchorPane implements Observer{
+public class Mapa extends AnchorPane implements Observer{ //, ObserverHovaHra
     
     private IHra hra;
     public Circle tecka;
@@ -43,5 +43,12 @@ public class Mapa extends AnchorPane implements Observer{
         this.setTopAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosY());
         this.setLeftAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosX());
     }
-    
+
+    @Override
+    public void novaHra(IHra hra) { //tady tecka se vrati na zacatek!!
+        hra.getHerniPlan().deleteObserver(this);
+        this.hra = hra;
+        hra.getHerniPlan().registerObserver(this);
+        update();
+    } 
 }
