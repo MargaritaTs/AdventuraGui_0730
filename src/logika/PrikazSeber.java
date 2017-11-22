@@ -30,6 +30,7 @@ public class PrikazSeber implements IPrikaz
     /**
      * Provádí příkaz 'seber'. Sbírá předměty, které se nacházejí v prostoru a které lze sebrat, a pak vkádá je do batohu
      * Pokud nejsou parametry, vypíše se chybové hlášení
+     * @return 
      */
     
     @Override
@@ -51,8 +52,15 @@ public class PrikazSeber implements IPrikaz
             } else {
                 // uložíme předmět do batohu
                  
-                plan.getBatoh().vlozPredmet(predmet);
-                return "Sebral(a) jsi " + nazevPredmetu;
+                if(plan.getBatoh().vlozPredmet(predmet))
+                {
+                    return "Sebral(a) jsi " + nazevPredmetu;
+                }
+                else
+                {
+                    aktualniProstor.vlozPredmet(predmet);
+                    return "Batoh je plný!";
+                }
             }
 
         }

@@ -26,6 +26,7 @@ public class PrikazBatoh implements IPrikaz
     /**
      * Metoda slouží pro vypsání obsahu batohu po zadání příkazu batoh.
      * Pokud nejsou parametry, vypíše se chybové hlášení.
+     * @return 
      */
     @Override
     public String provedPrikaz(String... parametry) {
@@ -38,6 +39,7 @@ public class PrikazBatoh implements IPrikaz
      *  
      *  @ return nazev prikazu
      */
+    @Override
     public String getNazev() {
         return NAZEV;
     }

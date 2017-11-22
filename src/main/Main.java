@@ -1,12 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Soubor je ulozen v kodovani UTF-8.
+ * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
+/**
+ * Třída Main slouží ke spouštění aplikace
+ * 
+ * @author Margarita Tsakunova
  */
 package main;
 
 import UI.Mapa;
 import UI.MenuPole;
+import UI.PanelBatohu;
+import UI.PanelVeci;
+import UI.PanelVychodu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
@@ -22,23 +27,30 @@ import javafx.event.*;
 
 /**
  *
- * @author Rita
+ * @author Margarita Tsakunova
  */
 public class Main extends Application {
     
     private Mapa mapa;
     private MenuPole menu;
     private IHra hra;
-    private TextArea centerText;//centerText je globalni promenna
+    private TextArea centerText;// centerText je globální proměnná
     private Stage primaryStage;
     
+    private PanelBatohu panelBatohu;
+    private PanelVeci panelVeci;
+    private PanelVychodu panelVychodu;
+    
+    /*
+    * Metoda vytvoří vše potřebné prvky pro hlavní okno
+    */
     @Override
     public void start(Stage primaryStage) {
         
         this.primaryStage = primaryStage;
         hra = new Hra();
         mapa = new Mapa(hra);
-        menu = new MenuPole(this);//odkaz na sebe
+        menu = new MenuPole(this);// odkaz na sebe
         
         BorderPane borderPane = new BorderPane();
                 
@@ -47,13 +59,10 @@ public class Main extends Application {
         centerText.setEditable(false);
         borderPane.setCenter(centerText);
                 
-        Label zadejPrikazLabel = new Label("Zadej prikaz");
+        Label zadejPrikazLabel = new Label("Zadej příkaz");
         zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
                 
-      //TextoveRozhrani textoveRozhrani = new TextoveRozhrani(hra);
-      //textoveRozhrani.hraj();
-                
-         TextField zadejPrikazTextField = new TextField("Sem zadej prikaz");
+         TextField zadejPrikazTextField = new TextField("Sem zadej příkaz");
          zadejPrikazTextField.setOnAction(new EventHandler<ActionEvent>() {
                 
          @Override
@@ -79,11 +88,21 @@ public class Main extends Application {
          //panel prikaz     
          borderPane.setBottom(dolniPanel);
          
-         borderPane.setLeft(mapa);
+         BorderPane listy = new BorderPane();
+         panelBatohu = new PanelBatohu(hra.getHerniPlan());
+         panelVychodu = new PanelVychodu(hra.getHerniPlan(),centerText,zadejPrikazTextField);
+         panelVeci = new PanelVeci(hra.getHerniPlan(),centerText);
+         listy.setTop(mapa);
+         listy.setCenter(panelVeci.getList());
+         listy.setRight(panelVychodu.getList());
+         
+         
+         borderPane.setLeft(listy);
          //menu adventury
          borderPane.setTop(menu);
+         borderPane.setRight(panelBatohu.getList());
          
-         Scene scene = new Scene(borderPane, 800, 650);
+         Scene scene = new Scene(borderPane, 950, 650);
         
          primaryStage.setTitle("Moje Adventura");
          primaryStage.setScene(scene);
@@ -92,8 +111,10 @@ public class Main extends Application {
          zadejPrikazTextField.requestFocus();
     }
 
-    /**
-     * @param args the command line arguments
+    /*
+     * Metoda, prostřednictvím níž se spouští celá aplikace
+     *
+     * @param args Parametry příkazového řádku
      */
     public static void main(String[] args) {
         if(args.length == 0){
@@ -114,11 +135,17 @@ public class Main extends Application {
         
     }
 
+    /*
+    * Metoda vytvoří hovou hru s uvítáním
+    */
     public void novaHra() {
         hra = new Hra();
-        centerText.setText(hra.vratUvitani());//v tom textArea se vrati nove uvitani ale tecka na mape se neosune na zacatek
-        //to same pro vsechny observery
+        centerText.setText(hra.vratUvitani());//v tomto textArea se vratí nové uvítání, ale tecka na mape se neposune na začátek
+        //to same pro všechny observery
         mapa.novaHra(hra);
+        panelBatohu.novaHra(hra);
+        panelVychodu.novaHra(hra);
+        panelVeci.novaHra(hra);
     }
 
     /**

@@ -31,6 +31,7 @@ public class PrikazOdpovez implements IPrikaz
     
     /**
      * Metoda rozhodne, zda bylo na kontrolní otázku odpovězeno správně a ve správném prostoru. Spravná odpoveď je jen "13" nebo "třináct". Bylo-li na kontrolní otázku odpovězeno špatně, hra končí. Odpoví-li hráč správně, vyhrává.
+     * @return 
      */
     @Override
     public String provedPrikaz(String... parametry) {
@@ -68,6 +69,7 @@ public class PrikazOdpovez implements IPrikaz
      *  
      *  @ return nazev prikazu
      */
+    @Override
     public String getNazev() {
         return NAZEV;
     }

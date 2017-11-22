@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Třída implementuje menuPole zobrazující lištu nahoře v hlavním okně.
+ * Lišta obsahuje různé položky
+ * 
+ * @author Margarita Tsakunova
  */
 package UI;
 
@@ -15,52 +16,60 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Hra;
-import logika.IHra;
 import main.Main;
 
 /**
- *
- * @author Rita
+ * 
+ * @author Margarita Tsakunova
  */
 public class MenuPole extends MenuBar{
     
     private Main main;
     
+    /*
+    * Konstruktor pro pole menu
+    */
     public MenuPole(Main main){
         this.main = main;
         init();
     }
     
+    /*
+    * Metoda vytvoří dva menu na liště
+    */
     private void init(){
      Menu menuSoubor = new Menu("Adventura");   
      
-     MenuItem itemNovaHra = new MenuItem("Nová hra");
-   //MenuItem itemNovaHra = new MenuItem(new Image("Nová hra", new ImageView(Main.class.getResourcesAsSream("/zdroje/ikona.png"))));
+     MenuItem itemNovaHra = new MenuItem("Nová hra"); // první položka u menu Nová hra
      itemNovaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+     MenuItem itemKonec = new MenuItem("Konec"); // druhá položka
+     itemKonec.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
      
-     MenuItem itemKonec = new MenuItem("Konec");
+     Menu menuHelp = new Menu("Help"); // druhé menu
      
-     
-     
-      Menu menuHelp = new Menu("Help"); 
-      MenuItem itemOProgramu = new MenuItem("O programu");
-      MenuItem itemNapoveda = new MenuItem("Napoveda");
+     MenuItem itemOProgramu = new MenuItem("O programu");
+     itemOProgramu.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
+     MenuItem itemNapoveda = new MenuItem("Nápověda");
+     itemNapoveda.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
       
-      menuSoubor.getItems().addAll(itemNovaHra, itemKonec);
-      menuHelp.getItems().addAll(itemOProgramu, itemNapoveda);
+     menuSoubor.getItems().addAll(itemNovaHra, itemKonec);
+     menuHelp.getItems().addAll(itemOProgramu, itemNapoveda);
     
       this.getMenus().addAll(menuSoubor, menuHelp);
       
       itemOProgramu.setOnAction(new EventHandler<ActionEvent>(){
-     
+          
+          
           @Override
           public void handle(ActionEvent event){
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               
-              alert.setTitle("O adventure");
-              alert.setHeaderText("Toto je ma adventura");
-              alert.setContentText("Graficka verze adventury");
+              alert.setTitle("O adventuře");
+              alert.setHeaderText("Adventura Jack Sparrow");
+              alert.setContentText("Grafická podoba hry\n"
+              + "\n"
+              + "Verze: pro školní rok 2017/2018\n"
+              + "Autor: Margarita Tsakunova");
               alert.initOwner(main.getPrimaryStage());
               alert.showAndWait();
           }    
@@ -68,15 +77,18 @@ public class MenuPole extends MenuBar{
       
       itemNapoveda.setOnAction(new EventHandler<ActionEvent>(){
           
+          /*
+           * Metoda vytvoří nové okno, kde se zobrazí položka Nápověda
+          */
           @Override
-          public void handle(ActionEvent event){
+          public void handle(ActionEvent event){ //vytvoreni noveho okna
                   Stage stage = new Stage();
-                  stage.setTitle("Napoveda");
+                  stage.setTitle("Nápověda");
                   WebView webview = new WebView();
                   
                   webview.getEngine().load(Main.class.getResource("/zdroje/napoveda.html").toExternalForm());
                   
-                  stage.setScene(new Scene(webview, 500, 500));
+                  stage.setScene(new Scene(webview, 600, 500));
                   stage.show();
           }
       });
@@ -89,7 +101,7 @@ public class MenuPole extends MenuBar{
         }
      });
      
-     itemNovaHra.setOnAction(new EventHandler<ActionEvent>(){
+        itemNovaHra.setOnAction(new EventHandler<ActionEvent>(){
          
         @Override
         public void handle(ActionEvent event){

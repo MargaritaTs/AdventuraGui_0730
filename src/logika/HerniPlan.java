@@ -24,17 +24,20 @@ public class HerniPlan implements Subject{
     private Batoh batoh;
     private boolean vyhra = false;
     private boolean prohra = false;
+    private Hra hra;
     
     private List<Observer> listObserveru = new ArrayList<Observer>();
+    
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví stáj.
+     * @param hra
      */
-    public HerniPlan() {
+    public HerniPlan(Hra hra) {
         zalozProstoryHry();
         batoh = new Batoh();
-        
-        
+        this.hra = hra;
+         
     }
    
     /**
@@ -43,19 +46,20 @@ public class HerniPlan implements Subject{
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor staj = new Prostor("stáj","stáj, ve které se probudil Jack Sparrow", 110, 40);
+        // poslední dva parametry ríkají o pozicích tečky
+        Prostor staj = new Prostor("stáj","stáj, ve které se probudil Jack Sparrow", 50, 130);
         Prostor louka = new Prostor("louka", "louka s malinami a květinami. Nachází se tady dům a\n"
-            + "vedle něho rostou jahody", 15, 74);
+            + "vedle něho rostou jahody", 105, 130);
         Prostor opravnaObuvi = new Prostor("opravnaObuvi","potkáš tady svého starého přítele, který\n"
-            + "se podělí o tajemství: 'V bažině lze najít drahé mince!' Pokud tyto mince nesebereš, o nic nepřijdeš", 60 ,10);
-        Prostor bazina = new Prostor("bažina","mazlavá bažina", 97, 40);
+            + "se podělí o tajemství: 'V bažině lze najít drahé mince!' Pokud tyto mince nesebereš, o nic nepřijdeš", 104, 70);
+        Prostor bazina = new Prostor("bažina","mazlavá bažina", 175, 100);
         Prostor hospoda = new Prostor("hospoda","hospoda, ve které je nutno se posilnit rumem a/nebo whisky, jinak\n"
-            + "nebudeš mít odvahu, abys prošel děsivým lesem", 80, 76);
-        Prostor les = new Prostor("les","hustý a děsivý les", 50, 80);
+            + "nebudeš mít odvahu, abys prošel děsivým lesem", 260, 100);
+        Prostor les = new Prostor("les","hustý a děsivý les", 288, 70);
         Prostor lod = new Prostor("loď","loď, na které nás čeká bocman Gibbs, který\n"
             + "ti brání ke vstupu na loď.\n"
             + "Položí ti otázku. Odpovíš-li špatňe, prohraješ.\n"
-            + "Otazka zní: 'Kolik je ďáblův tucet?'", 30 , 40);
+            + "Otazka zní: 'Kolik je ďáblův tucet?'", 360, 85);
    
         // přiřazují se průchody mezi prostory (sousedící prostory)
         staj.setVychod(louka);
@@ -70,12 +74,12 @@ public class HerniPlan implements Subject{
                 
         aktualniProstor = staj;  // hra začíná ve stáji
         
-        //předměty, které lze vložit do batohu       
-        bazina.vlozPredmet(new Predmet("mince", true));
-        hospoda.vlozPredmet(new Predmet("rum", true));
-        hospoda.vlozPredmet(new Predmet("whisky", true));
-        louka.vlozPredmet(new Predmet("dům", false));
-        louka.vlozPredmet(new Predmet("jahody", false));
+        //předměty, které lze vložit do batohu a jejich zdroje    
+        bazina.vlozPredmet(new Predmet("mince", true,"mince.jpg"));
+        hospoda.vlozPredmet(new Predmet("rum", true,"rum.jpg"));
+        hospoda.vlozPredmet(new Predmet("whisky", true,"whisky.jpg"));
+        louka.vlozPredmet(new Predmet("dům", false,"dum.jpg"));
+        louka.vlozPredmet(new Predmet("jahody", false,"jahody.jpg"));
     
     }
    
@@ -84,7 +88,6 @@ public class HerniPlan implements Subject{
      *
      *@return     aktuální prostor
      */
-    
     public Prostor getAktualniProstor() {
         return aktualniProstor;
     }
@@ -101,6 +104,7 @@ public class HerniPlan implements Subject{
     
     /**
      * Metoda rozhodne, zda kapitán Jack Sparrow vypil nějaký nápoj.
+     * @return 
      */
     public boolean vypilNapoj(){
         return vypil;
@@ -108,6 +112,7 @@ public class HerniPlan implements Subject{
     
     /**
      * Metoda nastavuje, že kapitán Jack Sparrow vypil nějaký nápoj.
+     * @param vyp
      */
     public void setVypil(boolean vyp){
         vypil = vyp;
@@ -116,6 +121,7 @@ public class HerniPlan implements Subject{
    
     /**
      * Metoda vrací obsah batohu.
+     * @return 
      */
     public Batoh getBatoh() {
         return batoh;
@@ -133,7 +139,7 @@ public class HerniPlan implements Subject{
      /**
      *  Metoda nastavuje, že hra skončila vyhrou.
      *
-     *@return     vyhra
+     * @param stav
      */
     public void setVyhra(boolean stav) {
         this.vyhra = stav;
@@ -148,10 +154,14 @@ public class HerniPlan implements Subject{
         return prohra;
     }
 
+    public Hra getHra() {
+        return hra;
+    }
+    
      /**
      *  Metoda nastavuje, že hra skončila prohrou.
      *
-     *@return     prohra
+     * @param stav
      */
     public void setProhra(boolean stav) {
         this.prohra = stav;

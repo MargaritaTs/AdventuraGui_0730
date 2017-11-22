@@ -33,8 +33,8 @@ public class Batoh
     /**
      * Metoda vloží předmět do batohu, pokud se tam vejde.
      * 
+     * @param predmet
      * @return true, pokud se předmět vloží
-     * @return false, pokud se předmět nevložil
      */
     public boolean vlozPredmet(Predmet predmet) {
         if (seznamPredmetu.size() < KAPACITA) { //vloží klíč a hodnotu do mapy
@@ -47,6 +47,7 @@ public class Batoh
    
     /**
      * Metoda k vypsání obsahu batohu.
+     * @return 
      */
     public String nazvyPredmetu(){
         
@@ -62,6 +63,8 @@ public class Batoh
     
     /**
      * Metoda rozhodne, zda v batohu předmět je.
+     * @param nazevPredmetu
+     * @return 
      */
     public boolean obsahujePredmet(String nazevPredmetu) {
         return seznamPredmetu.containsKey(nazevPredmetu); //pokud je klíč obsažen v mapě, vrací true
@@ -70,6 +73,8 @@ public class Batoh
                                         
       /**
      * Metoda odebere předmět z batohu.
+     * @param nazev
+     * @return 
      */
     public Predmet odeberPredmet(String nazev) {
         return seznamPredmetu.remove(nazev); //v mapě se zrusí odpovídající klíč s hodnotou
@@ -77,8 +82,22 @@ public class Batoh
     
       /**
      * Metoda vrací kapacitu batohu.
+     * @return 
      */
     public int getKapacitaBatohu() {
         return KAPACITA;
+    }
+    // Metoda vrací odkaz na seznam předmětů v batohu
+    public Map<String, Predmet> getSeznamPredmetu() {
+        return seznamPredmetu;
+    }
+    
+      /**
+     * Metoda najde předmět, na který chceme odkázat
+     * @param nazvyPredmetu název předmětu, který chceme najít
+     * @return 
+     */    
+    public Predmet getPredmet(String nazvyPredmetu) {
+        return seznamPredmetu.get(nazvyPredmetu);
     }
 }

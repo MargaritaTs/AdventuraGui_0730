@@ -17,6 +17,7 @@ public class Predmet
 {
     private String nazev;
     private boolean prenositelny;  // zda předmět je přenositelný
+    private String obrazek;
     
     
     
@@ -26,10 +27,11 @@ public class Predmet
      * @param nazev         název nového předmětu
      * @param prenositelny  true, pokud je možné předmět vložit do batohu
      */
-    public Predmet(String nazev, boolean prenositelny)
+    public Predmet(String nazev, boolean prenositelny,String obrazek)
     {
         this.nazev = nazev;
         this.prenositelny = prenositelny;
+        this.obrazek = obrazek;
     }
     
     /**
@@ -48,6 +50,10 @@ public class Predmet
      */
     public boolean jePrenositelny() {
         return prenositelny;
+    }
+    // Metoda vrací název obrázku pro jeho vykreslení
+    public String getObrazek() {
+        return obrazek;
     }
    
     

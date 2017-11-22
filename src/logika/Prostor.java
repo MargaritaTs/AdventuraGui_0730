@@ -68,7 +68,6 @@ public class Prostor {
      *
      * Bližší popis metody equals je u třídy Object.
      *
-     * @param o object, který se má porovnávat s aktuálním
      * @return hodnotu true, pokud má zadaný prostor stejný název, jinak false
      */  
       @Override
@@ -97,6 +96,7 @@ public class Prostor {
      * prekryti metody equals je potreba prekryt i metodu hashCode. Podrobny
      * popis pravidel pro vytvareni metody hashCode je u metody hashCode ve
      * tride Object
+     * @return 
      */
     @Override
     public int hashCode() {
@@ -182,11 +182,28 @@ public class Prostor {
     public Collection<Prostor> getVychody() {
         return Collections.unmodifiableCollection(vychody);
     }
+    // Vrací seznam všech východů
+    public String seznamVychodu() 
+    {
+        String vracenyText = "vychody:";
+        for (Prostor sousedni : vychody) {
+             vracenyText += " " + sousedni.getNazev();
+        }
+        return vracenyText;
+    }
+    // Vrací odkaz na seznam předmětů v této místnosti 
+    public Map<String,Predmet> getVeci()
+    {
+         return this.seznamPredmetu;
+    }
+    
+    
     
        /**
      *  Metoda zjišťuje, zda je předmět v daném prostoru.
      *  
      *  @param nazevPredmetu
+     * @return 
      */
     public boolean obsahujePredmet(String nazevPredmetu) {
         return seznamPredmetu.containsKey(nazevPredmetu);
@@ -196,6 +213,7 @@ public class Prostor {
      *  Metoda vloží předmět do prostoru, pokud je v prostoru.
      *  
      *  @param predmet
+     * @return 
      */
     public Predmet vlozPredmet(Predmet predmet) {
         seznamPredmetu.put(predmet.getNazev(),predmet);
@@ -212,7 +230,6 @@ public class Prostor {
      * 
      * @param nazevPredmetu
      * @return nalezenyPredmet, pokud je předmět v prostoru
-     * @return null, pokud předmět není v prostoru nebo předmět není přenositelný
      */
     public Predmet odeberPredmet (String nazevPredmetu) {
         Predmet nalezenyPredmet;
@@ -229,6 +246,8 @@ public class Prostor {
     
     /**
      * Metoda umožní vypít předmět.
+     * @param predmet
+     * @return 
      */
     public Predmet vypilPredmet(Predmet predmet) {
         seznamPredmetu.put(predmet.getNazev(),predmet);
@@ -240,6 +259,7 @@ public class Prostor {
   
     /** 
     * Metoda vypíše názvy předmětů nacházejících v daném prostoru.
+     * @return 
     */ 
    
     public String nazvyPredmetu() { 

@@ -1,20 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Třída Observer
+ * 
+ * @author Margarita Tsakunova
  */
 package utils;
 
 import logika.IHra;
 
-/**
- *
- * @author Rita
- */
+
 public interface Observer {
     
+   /**
+   * Metoda aktualizace pozorovatele
+   */ 
    void update(); 
    
-   void novaHra(IHra hra);//vytvoreni metody nova hra
+   /**
+   * Metoda vytvoření nové hry
+   * @param hra
+   */ 
+   void novaHra(IHra hra);
     
 }

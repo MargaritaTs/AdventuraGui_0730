@@ -17,18 +17,16 @@ public class Hra implements IHra {
     private HerniPlan herniPlan;
     private boolean konecHry = false;
    
-    
-    
-
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Hra() {
-        herniPlan = new HerniPlan();
+        herniPlan = new HerniPlan(this);
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazJdi(this));
         platnePrikazy.vlozPrikaz(new PrikazBatoh(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazSeber(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazVyhod(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazVypij(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazOdpovez(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazKonec(this));
@@ -39,6 +37,7 @@ public class Hra implements IHra {
     /**
      *  Vrátí úvodní zprávu pro hráče.
      */
+    @Override
     public String vratUvitani() {
         return "Vítejte!\n" +
                "Toto je příběh o kapitánovi Jackovi Sparrowi.\n" +
@@ -50,6 +49,7 @@ public class Hra implements IHra {
     /**
      *  Vrátí závěrečnou zprávu pro hráče.
      */
+    @Override
     public String vratEpilog() {
         return "Dík, že jste si zahráli. Ahoj.";
     }
@@ -57,6 +57,7 @@ public class Hra implements IHra {
     /** 
      * Vrací true, pokud hra skončila.
      */
+    @Override
      public boolean konecHry() {
         return konecHry;
     }
@@ -69,6 +70,7 @@ public class Hra implements IHra {
      *@param  radek  text, který zadal uživatel jako příkaz do hry.
      *@return          vrací se řetězec, který se má vypsat na obrazovku
      */
+    @Override
      public String zpracujPrikaz(String radek) {
         String [] slova = radek.split("[ \t]+");
         String slovoPrikazu = slova[0];
@@ -114,11 +116,9 @@ public class Hra implements IHra {
      *  
      *  @return     odkaz na herní plán
      */
+    @Override
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
-    
-   
-   
-    
+     
 }

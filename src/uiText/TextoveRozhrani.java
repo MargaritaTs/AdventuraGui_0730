@@ -3,7 +3,6 @@ package uiText;
 
 import java.util.Scanner;
 import logika.IHra;
-import uiText.TextoveRozhrani;
 /**
  *  Třída TextoveRozhrani
  * 
@@ -22,6 +21,7 @@ public class TextoveRozhrani {
     
     /**
      *  Metoda vytváří hru.
+     * @param hra
      */
     public TextoveRozhrani(IHra hra) {
         this.hra = hra;

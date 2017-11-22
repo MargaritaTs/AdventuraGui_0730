@@ -26,6 +26,7 @@ public class PrikazVypij implements IPrikaz
     
       /**
      * Provádí příkaz vypij. Zkouší vypít předměty, které jsou už vložené do batohu.
+     * @return 
      */
     @Override
     public String provedPrikaz(String... parametry) {
@@ -74,6 +75,7 @@ public class PrikazVypij implements IPrikaz
      *  
      *  @ return nazev prikazu
      */
+    @Override
     public String getNazev() {
         return NAZEV;
     }
