@@ -17,7 +17,7 @@ import logika.IHra;
 import utils.Observer;
 
 /**
- * Třída implementuje panelVychodu zobrazující list s východy vlevo v hlavním okně
+ * Třída PanelVychodu umožňuje zobrazovat list s východy vlevo v hlavním okně
  * 
  * @author Margarita Tsakunova
  * @version pro školní rok 2017/2018
