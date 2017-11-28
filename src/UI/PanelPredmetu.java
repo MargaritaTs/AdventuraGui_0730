@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package UI;
 
 import java.util.Map;
@@ -16,13 +20,13 @@ import logika.Predmet;
 import utils.Observer;
 
 /**
- * Třída implementuje panelVeci zobrazující list s předměty vlevo v hlavním okně.
+ * Třída PanelPredmetu umožňuje zobrazovat list s předměty vlevo v hlavním okně.
  * Předměty se nachází v různých prostorech
  * 
  * @author Margarita Tsakunova
  * @version pro školní rok 2017/2018
  */
-public class PanelVeci implements Observer{
+public class PanelPredmetu implements Observer{
     
     private HerniPlan plan;
     ListView<Object> list;
@@ -34,7 +38,7 @@ public class PanelVeci implements Observer{
     * @param plan
     * @param text
     */
-    public PanelVeci(HerniPlan plan, TextArea text) {
+    public PanelPredmetu(HerniPlan plan, TextArea text) {
        this.plan = plan;
        plan.registerObserver(this);
        

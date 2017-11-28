@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package UI;
 
 import javafx.scene.image.Image;
@@ -11,7 +15,7 @@ import main.Main;
 import utils.Observer;
 
 /**
- * Třída implementuje Mapu zobrazující obrázek s plánem prostorů.
+ * Třída Mapa umožňuje zobrazovat obrázek s plánem prostorů.
  * Na obrázku bude vyznačen aktuální prostor
  * 
  * @author Margarita Tsakunova

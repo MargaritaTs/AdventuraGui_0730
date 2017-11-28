@@ -6,7 +6,7 @@ package main;
 import UI.Mapa;
 import UI.MenuPole;
 import UI.PanelBatohu;
-import UI.PanelVeci;
+import UI.PanelPredmetu;
 import UI.PanelVychodu;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -36,7 +36,7 @@ public class Main extends Application {
     private Stage primaryStage;
     
     private PanelBatohu panelBatohu;
-    private PanelVeci panelVeci;
+    private PanelPredmetu panelPredmetu;
     private PanelVychodu panelVychodu;
     
     /**
@@ -92,9 +92,9 @@ public class Main extends Application {
          BorderPane listy = new BorderPane();
          panelBatohu = new PanelBatohu(hra.getHerniPlan(), centerText);
          panelVychodu = new PanelVychodu(hra.getHerniPlan(),centerText,zadejPrikazTextField);
-         panelVeci = new PanelVeci(hra.getHerniPlan(),centerText);
+         panelPredmetu = new PanelPredmetu(hra.getHerniPlan(),centerText);
          listy.setTop(mapa);
-         listy.setCenter(panelVeci.getList());
+         listy.setCenter(panelPredmetu.getList());
          listy.setRight(panelVychodu.getList());
          
          
@@ -147,7 +147,7 @@ public class Main extends Application {
         mapa.novaHra(hra);
         panelBatohu.novaHra(hra);
         panelVychodu.novaHra(hra);
-        panelVeci.novaHra(hra);
+        panelPredmetu.novaHra(hra);
     }
 
     /**

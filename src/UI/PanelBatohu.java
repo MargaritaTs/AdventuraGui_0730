@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package UI;
 
 import java.util.Map;
@@ -16,7 +20,7 @@ import logika.Predmet;
 import utils.Observer;
 
 /**
- * Třída implementuje panelBatohu zobrazující list s předměty vpravo v hlavním okně.
+ * Třída PanelBatohu umožňuje zobrazovat list s předměty vpravo v hlavním okně.
  * Zobrazuje předměty, které byly vloženy do batohu
  * 
  * @author Margarita Tsakunova
