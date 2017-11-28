@@ -30,7 +30,7 @@ public class PrikazBatoh implements IPrikaz
      */
     @Override
     public String provedPrikaz(String... parametry) {
-        return plan.getBatoh().toString();
+        return plan.getBatoh().nazvyPredmetu();
     }
     
     

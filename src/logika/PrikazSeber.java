@@ -53,7 +53,8 @@ public class PrikazSeber implements IPrikaz
                 // uložíme předmět do batohu
                  
                 if(plan.getBatoh().vlozPredmet(predmet))
-                {
+                {   
+                    plan.notifyAllObservers(); // upozornění!
                     return "Sebral(a) jsi " + nazevPredmetu;
                 }
                 else

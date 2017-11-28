@@ -62,11 +62,17 @@ public class PanelVychodu implements Observer
         
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
+            
+            /*
+            * Metoda přechází mezi prostory z prostoru na klik 
+            */
             @Override
             public void handle(MouseEvent click)
             {
-                if (click.getClickCount() == 2) 
+                if (click.getClickCount() == 1) 
                 {
+                  if(!list.getSelectionModel().getSelectedItem().equals("Východy:"))
+                  {
                     String vstupniPrikaz = "jdi "+list.getSelectionModel().getSelectedItem();
                     String odpovedHry = plan.getHra().zpracujPrikaz("jdi "+list.getSelectionModel().getSelectedItem());
                 
@@ -80,7 +86,7 @@ public class PanelVychodu implements Observer
                     centralText.appendText(plan.getHra().vratEpilog());
                     }
                     
-                    
+                  } 
                     plan.notifyAllObservers();
                 }
             }
@@ -104,6 +110,9 @@ public class PanelVychodu implements Observer
       {
         String vychody = plan.getAktualniProstor().seznamVychodu();
         data.clear();
+        
+        data.add("Východy:");// přidání políčka
+        
         String[] oddeleneVychody = vychody.split(" ");
         for (int i = 1; i < oddeleneVychody.length; i++) {
             data.add(oddeleneVychody[i]);

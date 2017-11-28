@@ -89,7 +89,7 @@ public class Main extends Application {
          borderPane.setBottom(dolniPanel);
          
          BorderPane listy = new BorderPane();
-         panelBatohu = new PanelBatohu(hra.getHerniPlan());
+         panelBatohu = new PanelBatohu(hra.getHerniPlan(), centerText);
          panelVychodu = new PanelVychodu(hra.getHerniPlan(),centerText,zadejPrikazTextField);
          panelVeci = new PanelVeci(hra.getHerniPlan(),centerText);
          listy.setTop(mapa);
@@ -102,7 +102,7 @@ public class Main extends Application {
          borderPane.setTop(menu);
          borderPane.setRight(panelBatohu.getList());
          
-         Scene scene = new Scene(borderPane, 950, 650);
+         Scene scene = new Scene(borderPane, 1000, 650); // hlavní okno
         
          primaryStage.setTitle("Moje Adventura");
          primaryStage.setScene(scene);

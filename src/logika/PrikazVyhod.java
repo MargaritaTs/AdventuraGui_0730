@@ -54,6 +54,7 @@ public class PrikazVyhod implements IPrikaz {
             // pokud je předmět smazán z batohu, přesune se do aktualního prostoru
             mazany = batoh.odeberPredmet(nazevPredmetu);
             aktualniProstor.vlozPredmet(mazany);
+            plan.notifyAllObservers(); // upozornění!
             return "Vyhodil(a) jsi " + nazevPredmetu;
         }
     }

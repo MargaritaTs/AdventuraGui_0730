@@ -9,9 +9,12 @@ package UI;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import logika.HerniPlan;
 import logika.IHra;
 import logika.Predmet;
@@ -27,13 +30,15 @@ public class PanelBatohu implements Observer{
     private HerniPlan plan;
     ListView<Object> list;
     ObservableList<Object> data;
+    private TextArea centralText;
 
     /*
     * Konstruktor pro panel batohu
     */
-    public PanelBatohu(HerniPlan plan) {
+    public PanelBatohu(HerniPlan plan, TextArea text) {
        this.plan = plan;
        plan.registerObserver(this);
+       centralText = text;
         init();
     }
 
@@ -45,6 +50,48 @@ public class PanelBatohu implements Observer{
         data = FXCollections.observableArrayList();
         list.setItems(data);
         list.setPrefWidth(150);
+        
+        list.setOnMouseClicked(new EventHandler<MouseEvent>() 
+        {
+            
+            /*
+            * Metoda vyhazuje předměty z batohu na klik 
+            */
+            @Override
+            public void handle(MouseEvent click)
+            {
+                if (click.getClickCount() == 1) 
+                {
+                    int index = list.getSelectionModel().getSelectedIndex() -1;// aby to nehledalo něco, co tam není
+                    
+                    Map<String, Predmet> seznam;
+                    seznam = plan.getBatoh().getSeznamPredmetu();
+                    
+                    String nazev = "";
+                    int pomocna = 0;
+                    for (String x : seznam.keySet()) 
+                    {
+                       if(pomocna == index)
+                       {
+                           nazev = x;
+                       }
+                       pomocna++;
+                    }
+                    
+                    if (!nazev.equals(""))// tím právě udělám, aby se na to políčko nedalo klikat
+                    {
+                    String vstupniPrikaz = "vyhoď "+nazev;
+                    String odpovedHry = plan.getHra().zpracujPrikaz("vyhoď "+nazev);
+
+                
+                    centralText.appendText("\n" + vstupniPrikaz + "\n");
+                    centralText.appendText("\n" + odpovedHry + "\n");
+               
+                    plan.notifyAllObservers();
+                    }
+                }
+            }
+        });
         
         update();
     }
@@ -66,6 +113,9 @@ public class PanelBatohu implements Observer{
         Map<String, Predmet> seznam;
         seznam = plan.getBatoh().getSeznamPredmetu();
         data.clear();
+        
+        data.add("Předměty v batohu:");// přidání políčka, které nebude reagovat na klikání
+        
         for (String x : seznam.keySet()) 
         {
         Predmet pomocny = seznam.get(x);

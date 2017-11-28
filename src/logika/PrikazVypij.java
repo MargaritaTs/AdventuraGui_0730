@@ -52,7 +52,8 @@ public class PrikazVypij implements IPrikaz
     private String whisky(){
         if(plan.getBatoh().obsahujePredmet("whisky")){
             plan.getBatoh().odeberPredmet("whisky");
-            plan.setVypil(true); 
+            plan.setVypil(true);
+            plan.notifyAllObservers(); // upozornění!
             return "Vypil(a) jsi whisky.";
         }
         return "Nemáš whisky.";
@@ -65,6 +66,7 @@ public class PrikazVypij implements IPrikaz
         if(plan.getBatoh().obsahujePredmet("rum")){
             plan.getBatoh().odeberPredmet("rum");
             plan.setVypil(true); 
+            plan.notifyAllObservers(); // upozornění!
             return "Vypil(a) jsi rum.";
         }
         return "Nemáš rum.";

@@ -55,12 +55,16 @@ public class PanelVeci implements Observer{
         
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
+            
+            /*
+            * Metoda sbíra předměty z prostoru na klik 
+            */
             @Override
             public void handle(MouseEvent click)
             {
-                if (click.getClickCount() == 2) 
+                if (click.getClickCount() == 1) 
                 {
-                    int index = list.getSelectionModel().getSelectedIndex();
+                    int index = list.getSelectionModel().getSelectedIndex() -1;// aby to nehledalo něco, co tam není
                     
                     Map<String, Predmet> seznam;
                     seznam = plan.getAktualniProstor().getVeci();
@@ -76,6 +80,8 @@ public class PanelVeci implements Observer{
                        pomocna++;
                     }
                     
+                    if (!nazev.equals(""))// tím právě udělám, aby se na to políčko nedalo klikat
+                    {
                     String vstupniPrikaz = "seber "+nazev;
                     String odpovedHry = plan.getHra().zpracujPrikaz("seber "+nazev);
 
@@ -84,6 +90,7 @@ public class PanelVeci implements Observer{
                     centralText.appendText("\n" + odpovedHry + "\n");
                
                     plan.notifyAllObservers();
+                    }
                 }
             }
         });
@@ -111,6 +118,9 @@ public class PanelVeci implements Observer{
         Map<String, Predmet> seznam;
         seznam = plan.getAktualniProstor().getVeci();
         data.clear();
+        
+        data.add("Předměty v prostoru:");// přidání políčka, které nebude reagovat na klikání
+        
         for (String x : seznam.keySet()) 
         {
         Predmet pomocny = seznam.get(x);
