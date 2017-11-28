@@ -1,9 +1,4 @@
-/**
- * Třída implementuje menuPole zobrazující lištu nahoře v hlavním okně.
- * Lišta obsahuje různé položky
- * 
- * @author Margarita Tsakunova
- */
+
 package UI;
 
 import javafx.event.ActionEvent;
@@ -19,22 +14,26 @@ import javafx.stage.Stage;
 import main.Main;
 
 /**
+ * Třída implementuje menuPole zobrazující lištu nahoře v hlavním okně.
+ * Lišta obsahuje různé položky
  * 
  * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
 public class MenuPole extends MenuBar{
     
     private Main main;
     
-    /*
+    /**
     * Konstruktor pro pole menu
+    * @param main
     */
     public MenuPole(Main main){
         this.main = main;
         init();
     }
     
-    /*
+    /**
     * Metoda vytvoří dva menu na liště
     */
     private void init(){
@@ -59,7 +58,9 @@ public class MenuPole extends MenuBar{
       
       itemOProgramu.setOnAction(new EventHandler<ActionEvent>(){
           
-          
+          /**
+          * Metoda vyhazuje předměty z batohu na klik 
+          */
           @Override
           public void handle(ActionEvent event){
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -77,8 +78,8 @@ public class MenuPole extends MenuBar{
       
       itemNapoveda.setOnAction(new EventHandler<ActionEvent>(){
           
-          /*
-           * Metoda vytvoří nové okno, kde se zobrazí položka Nápověda
+          /**
+          * Metoda zobrazí alert box s určitým obsahem
           */
           @Override
           public void handle(ActionEvent event){ //vytvoreni noveho okna
@@ -95,14 +96,20 @@ public class MenuPole extends MenuBar{
       
       itemKonec.setOnAction(new EventHandler<ActionEvent>(){
         
+       /**
+       * Metoda pro ukončení hry
+       */  
         @Override
         public void handle(ActionEvent event){
             System.exit(0);
         }
      });
-     
-        itemNovaHra.setOnAction(new EventHandler<ActionEvent>(){
-         
+      
+      itemNovaHra.setOnAction(new EventHandler<ActionEvent>(){
+        
+        /**
+        * Metoda zavolá novou instanci hry
+        */ 
         @Override
         public void handle(ActionEvent event){
             main.novaHra();

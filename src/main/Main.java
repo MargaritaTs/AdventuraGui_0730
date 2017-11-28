@@ -1,10 +1,6 @@
 /* Soubor je ulozen v kodovani UTF-8.
- * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
-/**
- * Třída Main slouží ke spouštění aplikace
- * 
- * @author Margarita Tsakunova
- */
+* Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. 
+*/
 package main;
 
 import UI.Mapa;
@@ -26,8 +22,10 @@ import javafx.geometry.*;
 import javafx.event.*;
 
 /**
- *
+ * Třída Main slouží ke spouštění aplikace
+ * 
  * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
 public class Main extends Application {
     
@@ -41,8 +39,8 @@ public class Main extends Application {
     private PanelVeci panelVeci;
     private PanelVychodu panelVychodu;
     
-    /*
-    * Metoda vytvoří vše potřebné prvky pro hlavní okno
+    /**
+    * Konstruktor vytvoří vše potřebné UI prvky pro hlavní okno
     */
     @Override
     public void start(Stage primaryStage) {
@@ -64,7 +62,10 @@ public class Main extends Application {
                 
          TextField zadejPrikazTextField = new TextField("Sem zadej příkaz");
          zadejPrikazTextField.setOnAction(new EventHandler<ActionEvent>() {
-                
+         
+         /**
+         * Metoda zabezpečuje komunikaci s textovým rozhraním hry
+         */   
          @Override
          public void handle(ActionEvent event){
          String zadanyPrikaz = zadejPrikazTextField.getText();
@@ -111,8 +112,9 @@ public class Main extends Application {
          zadejPrikazTextField.requestFocus();
     }
 
-    /*
-     * Metoda, prostřednictvím níž se spouští celá aplikace
+    /**
+     * Metoda, prostřednictvím níž se spouští celá aplikace pomocí
+     * zadání příslušného parametru
      *
      * @param args Parametry příkazového řádku
      */
@@ -127,7 +129,7 @@ public class Main extends Application {
              textoveRozhrani.hraj();
           
         }else{
-                System.out.println("Neplatny parametr");
+                System.out.println("Neplatný parametr");
                 System.exit(1);
                 
                 }
@@ -135,7 +137,7 @@ public class Main extends Application {
         
     }
 
-    /*
+    /**
     * Metoda vytvoří hovou hru s uvítáním
     */
     public void novaHra() {
@@ -149,6 +151,8 @@ public class Main extends Application {
     }
 
     /**
+     * Metoda zobrazí UI prvky
+     * 
      * @return the primaryStage
      */
     public Stage getPrimaryStage() {

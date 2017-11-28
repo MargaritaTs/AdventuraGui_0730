@@ -1,8 +1,4 @@
-/**
- * Třída implementuje panelVychodu zobrazující list s východy vlevo v hlavním okně
- * 
- * @author Margarita Tsakunova
- */
+
 package UI;
 
 import javafx.collections.FXCollections;
@@ -17,10 +13,11 @@ import logika.IHra;
 import utils.Observer;
 
 /**
- *
+ * Třída implementuje panelVychodu zobrazující list s východy vlevo v hlavním okně
+ * 
  * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
-
 public class PanelVychodu implements Observer
 {
 
@@ -63,8 +60,8 @@ public class PanelVychodu implements Observer
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
             
-            /*
-            * Metoda přechází mezi prostory z prostoru na klik 
+            /**
+            * Metoda přechází mezi prostory na klik 
             */
             @Override
             public void handle(MouseEvent click)
@@ -94,8 +91,9 @@ public class PanelVychodu implements Observer
         update();
       }
 
-    /*
+    /**
     * Metoda vrací list
+    * @return 
     */
     public ListView<String> getList()
       {
@@ -111,7 +109,7 @@ public class PanelVychodu implements Observer
         String vychody = plan.getAktualniProstor().seznamVychodu();
         data.clear();
         
-        data.add("Východy:");// přidání políčka
+        data.add("Východy:"); // přidání políčka
         
         String[] oddeleneVychody = vychody.split(" ");
         for (int i = 1; i < oddeleneVychody.length; i++) {

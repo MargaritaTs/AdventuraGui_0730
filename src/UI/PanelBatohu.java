@@ -1,9 +1,4 @@
-/**
- * Třída implementuje panelBatohu zobrazující list s předměty vpravo v hlavním okně.
- * Zobrazuje předměty, které byly vloženy do batohu
- * 
- * @author Margarita Tsakunova
- */
+
 package UI;
 
 import java.util.Map;
@@ -21,10 +16,12 @@ import logika.Predmet;
 import utils.Observer;
 
 /**
- *
+ * Třída implementuje panelBatohu zobrazující list s předměty vpravo v hlavním okně.
+ * Zobrazuje předměty, které byly vloženy do batohu
+ * 
  * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
-
 public class PanelBatohu implements Observer{
     
     private HerniPlan plan;
@@ -32,8 +29,10 @@ public class PanelBatohu implements Observer{
     ObservableList<Object> data;
     private TextArea centralText;
 
-    /*
+    /**
     * Konstruktor pro panel batohu
+    * @param plan
+    * @param text
     */
     public PanelBatohu(HerniPlan plan, TextArea text) {
        this.plan = plan;
@@ -42,7 +41,7 @@ public class PanelBatohu implements Observer{
         init();
     }
 
-    /*
+    /**
     * Metoda vytvoří list pro předměty v batohu
     */
     private void init() {
@@ -54,7 +53,7 @@ public class PanelBatohu implements Observer{
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
             
-            /*
+            /**
             * Metoda vyhazuje předměty z batohu na klik 
             */
             @Override
@@ -62,7 +61,7 @@ public class PanelBatohu implements Observer{
             {
                 if (click.getClickCount() == 1) 
                 {
-                    int index = list.getSelectionModel().getSelectedIndex() -1;// aby to nehledalo něco, co tam není
+                    int index = list.getSelectionModel().getSelectedIndex() -1; // aby to nehledalo něco, co tam není
                     
                     Map<String, Predmet> seznam;
                     seznam = plan.getBatoh().getSeznamPredmetu();
@@ -78,7 +77,7 @@ public class PanelBatohu implements Observer{
                        pomocna++;
                     }
                     
-                    if (!nazev.equals(""))// tím právě udělám, aby se na to políčko nedalo klikat
+                    if (!nazev.equals("")) // tím právě udělám, aby se na to políčko nedalo klikat
                     {
                     String vstupniPrikaz = "vyhoď "+nazev;
                     String odpovedHry = plan.getHra().zpracujPrikaz("vyhoď "+nazev);
@@ -96,14 +95,15 @@ public class PanelBatohu implements Observer{
         update();
     }
     
-    /*
+    /**
     * Metoda vrací list
+    * @return 
     */
     public ListView<Object> getList() {
         return list;
     }
     
-    /*
+    /**
     * Metoda aktualizuje list předmětů v batohu. Zobrazuje obrázky předmětů, 
     * které má hráč u sebe.
     */
@@ -114,7 +114,7 @@ public class PanelBatohu implements Observer{
         seznam = plan.getBatoh().getSeznamPredmetu();
         data.clear();
         
-        data.add("Předměty v batohu:");// přidání políčka, které nebude reagovat na klikání
+        data.add("Předměty v batohu:"); // přidání políčka, které nebude reagovat na klikání
         
         for (String x : seznam.keySet()) 
         {
@@ -140,7 +140,7 @@ public class PanelBatohu implements Observer{
      * @param hra
      */
     @Override
-    public void novaHra(IHra hra) { //tady tecka se vrati na zacatek!!
+    public void novaHra(IHra hra) { // tady tecka se vrati na zacatek!!
         hra.getHerniPlan().deleteObserver(this);
         this.plan = hra.getHerniPlan();
         this.plan.registerObserver(this);

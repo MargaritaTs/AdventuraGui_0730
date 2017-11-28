@@ -1,13 +1,11 @@
+
+package utils;
+
 /**
  * Třída Subject
  * 
  * @author Margarita Tsakunova
- */
-package utils;
-
-/**
- *
- * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
 public interface Subject {
     

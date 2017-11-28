@@ -1,13 +1,14 @@
-/**
- * Třída Observer
- * 
- * @author Margarita Tsakunova
- */
+
 package utils;
 
 import logika.IHra;
 
-
+/**
+ * Třída Observer
+ * 
+ * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
+ */
 public interface Observer {
     
    /**

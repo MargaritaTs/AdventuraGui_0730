@@ -1,9 +1,4 @@
-/**
- * Třída implementuje panelVeci zobrazující list s předměty vlevo v hlavním okně.
- * Předměty se nachází v různých prostorech
- * 
- * @author Margarita Tsakunova
- */
+
 package UI;
 
 import java.util.Map;
@@ -21,11 +16,12 @@ import logika.Predmet;
 import utils.Observer;
 
 /**
- * Panel zobrazujíci předměty v aktuálním prostoru
+ * Třída implementuje panelVeci zobrazující list s předměty vlevo v hlavním okně.
+ * Předměty se nachází v různých prostorech
  * 
  * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
-
 public class PanelVeci implements Observer{
     
     private HerniPlan plan;
@@ -33,8 +29,10 @@ public class PanelVeci implements Observer{
     ObservableList<Object> data;
     private TextArea centralText;
 
-    /*
+    /**
     * Konstruktor pro panel
+    * @param plan
+    * @param text
     */
     public PanelVeci(HerniPlan plan, TextArea text) {
        this.plan = plan;
@@ -44,7 +42,7 @@ public class PanelVeci implements Observer{
         init();
     }
 
-    /*
+    /**
     * Metoda vytvoří list pro předměty
     */
     private void init() {
@@ -56,7 +54,7 @@ public class PanelVeci implements Observer{
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
             
-            /*
+            /**
             * Metoda sbíra předměty z prostoru na klik 
             */
             @Override
@@ -101,14 +99,15 @@ public class PanelVeci implements Observer{
         update();
     }
     
-    /*
+    /**
     * Metoda vrací list
+    * @return 
     */
     public ListView<Object> getList() {
         return list;
     }
     
-    /*
+    /**
     * Metoda aktualizuje list předmětu. Zobrazuje obrázky předmětů, které se
     * nachází v jednotlivých prostorech
     */
@@ -119,7 +118,7 @@ public class PanelVeci implements Observer{
         seznam = plan.getAktualniProstor().getVeci();
         data.clear();
         
-        data.add("Předměty v prostoru:");// přidání políčka, které nebude reagovat na klikání
+        data.add("Předměty v prostoru:"); // přidání políčka, které nebude reagovat na klikání
         
         for (String x : seznam.keySet()) 
         {

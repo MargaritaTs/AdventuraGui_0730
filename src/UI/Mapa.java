@@ -1,9 +1,4 @@
-/**
- * Třída implementuje Mapu zobrazující obrázek s plánem prostorů
- * Na obrázku bude vyznačen aktuální prostor
- * 
- * @author Margarita Tsakunova
- */
+
 package UI;
 
 import javafx.scene.image.Image;
@@ -16,16 +11,20 @@ import main.Main;
 import utils.Observer;
 
 /**
- *
- * @Margarita Tsakunova
+ * Třída implementuje Mapu zobrazující obrázek s plánem prostorů.
+ * Na obrázku bude vyznačen aktuální prostor
+ * 
+ * @author Margarita Tsakunova
+ * @version pro školní rok 2017/2018
  */
 public class Mapa extends AnchorPane implements Observer{ //, ObserverHovaHra
     
     private IHra hra;
     public Circle tecka;
     
-    /*
+    /**
     * Konstruktor pro mapu
+    * @param hra
     */
     public Mapa(IHra hra){
         this.hra = hra;
@@ -34,7 +33,7 @@ public class Mapa extends AnchorPane implements Observer{ //, ObserverHovaHra
         
     }
     
-    /*
+    /**
     * Metoda vytvoří obrázek s mapou
     */
     private void init(){
@@ -45,7 +44,7 @@ public class Mapa extends AnchorPane implements Observer{ //, ObserverHovaHra
        
     }
 
-    /*
+    /**
     * Metoda aktualizuje pozice tečky na mapě
     */
     @Override
